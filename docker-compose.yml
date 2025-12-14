@@ -1,0 +1,22 @@
+version: 4.54.0
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL= mysql+pymysql://root:root111@database:3306/task_db
+    depends_on:
+      - database
+    command: python app/main.py
+
+  database:
+    image: mysql:8.0
+    environment:  
+      MYSQL_ROOT_PASSWORD: root111
+      MYSQL_DATABASE: task_db
+      MYSQL_USER: user 
+      MYSQL_PASSWORD: roOt197
+    ports:
+      - "3306:3306"
